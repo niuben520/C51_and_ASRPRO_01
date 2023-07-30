@@ -1,0 +1,2 @@
+# C51_and_ASRPRO_01
+STC8_51单片机和ASRPRO语言模块串口通讯
