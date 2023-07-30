@@ -1,0 +1,128 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              07/31/2023 01:12:40 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\Keil5 C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ma
+                    -in.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "config.h"
+   2          #include "GPIO.h"
+   3          #include "UART.h"
+   4          #include "delay.h"
+   5          
+   6          void GPIO_config(void) {
+   7   1          GPIO_InitTypeDef  GPIO_InitStructure;   //结构定义
+   8   1          GPIO_InitStructure.Pin  = GPIO_Pin_0 | GPIO_Pin_1;    //指定要初始化的IO,
+   9   1          GPIO_InitStructure.Mode = GPIO_PullUp;  //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPI
+             -O_OUT_PP
+  10   1          GPIO_Inilize(GPIO_P3, &GPIO_InitStructure);//初始化
+  11   1        
+  12   1          GPIO_InitStructure.Pin  = GPIO_Pin_0 | GPIO_Pin_1;    //指定要初始化的IO,
+  13   1          GPIO_InitStructure.Mode = GPIO_PullUp;  //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPI
+             -O_OUT_PP
+  14   1          GPIO_Inilize(GPIO_P1, &GPIO_InitStructure);//初始化
+  15   1      }
+  16          
+  17          void UART_config(void) {
+  18   1          COMx_InitDefine   COMx_InitStructure;         //结构定义
+  19   1        
+  20   1          COMx_InitStructure.UART_Mode      = UART_8bit_BRTx; //模式, UART_ShiftRight,UART_8bit_BRTx,UART_9bit,U
+             -ART_9bit_BRTx
+  21   1          COMx_InitStructure.UART_BRT_Use   = BRT_Timer1;     //选择波特率发生器, BRT_Timer1, BRT_Timer2 (注意: 串
+             -口2固定使用BRT_Timer2)
+  22   1          COMx_InitStructure.UART_BaudRate  = 115200ul;     //波特率, 一般 110 ~ 115200
+  23   1          COMx_InitStructure.UART_RxEnable  = ENABLE;       //接收允许,   ENABLE或DISABLE
+  24   1          COMx_InitStructure.BaudRateDouble = DISABLE;      //波特率加倍, ENABLE或DISABLE
+  25   1          COMx_InitStructure.UART_Interrupt = ENABLE;       //中断允许,   ENABLE或DISABLE
+  26   1          COMx_InitStructure.UART_Priority  = Priority_0;     //指定中断优先级(低到高) Priority_0,Priority_1,Prior
+             -ity_2,Priority_3
+  27   1          COMx_InitStructure.UART_P_SW      = UART1_SW_P30_P31; //切换端口,   UART1_SW_P30_P31,UART1_SW_P36_P37,
+             -UART1_SW_P16_P17,UART1_SW_P43_P44
+  28   1          UART_Configuration(UART1, &COMx_InitStructure);   //初始化串口1 UART1,UART2,UART3,UART4
+  29   1        
+  30   1          COMx_InitStructure.UART_Mode      = UART_8bit_BRTx; //模式, UART_ShiftRight,UART_8bit_BRTx,UART_9bit,U
+             -ART_9bit_BRTx
+  31   1          COMx_InitStructure.UART_BRT_Use   = BRT_Timer2;     //选择波特率发生器, BRT_Timer1, BRT_Timer2 (注意: 串
+             -口2固定使用BRT_Timer2)
+  32   1          COMx_InitStructure.UART_BaudRate  = 9600ul;     //波特率, 一般 110 ~ 115200
+  33   1          COMx_InitStructure.UART_RxEnable  = ENABLE;       //接收允许,   ENABLE或DISABLE
+  34   1          COMx_InitStructure.BaudRateDouble = DISABLE;      //波特率加倍, ENABLE或DISABLE
+  35   1          COMx_InitStructure.UART_Interrupt = ENABLE;       //中断允许,   ENABLE或DISABLE
+  36   1          COMx_InitStructure.UART_Priority  = Priority_0;     //指定中断优先级(低到高) Priority_0,Priority_1,Prior
+             -ity_2,Priority_3
+  37   1          COMx_InitStructure.UART_P_SW      = UART2_SW_P10_P11; //切换端口,   UART1_SW_P30_P31,UART1_SW_P36_P37,
+             -UART1_SW_P16_P17,UART1_SW_P43_P44
+  38   1          UART_Configuration(UART2, &COMx_InitStructure);   //初始化串口1 UART1,UART2,UART3,UART4
+  39   1        
+  40   1      }
+  41          void on_uart1_recv() {
+  42   1          // uart1收到数据了
+  43   1          u8 i;
+  44   1          for(i=0; i<COM1.RX_Cnt; i++)  {
+C51 COMPILER V9.60.7.0   MAIN                                                              07/31/2023 01:12:40 PAGE 2   
+
+  45   2              // RX1_Buffer[i]存的是接收的数据，写出用 TX1_write2buff
+  46   2              TX2_write2buff(RX1_Buffer[i]); // 将1收到的数据，通过UART2发送出去
+  47   2      //        TX1_write2buff(RX1_Buffer[i]); // 将1收到的数据，通过UART1发送出去
+  48   2              
+  49   2          }
+  50   1      }
+  51          void on_uart2_recv(){
+  52   1          // uart2收到数据了
+  53   1          u8 i;
+  54   1          for(i=0; i<COM2.RX_Cnt; i++)  {
+  55   2              TX1_write2buff(RX2_Buffer[i]);  // 将2收到的数据，从UART1发出去
+  56   2          }
+  57   1      }
+  58          
+  59          void main() {
+  60   1      
+  61   1          GPIO_config();
+  62   1      
+  63   1          UART_config();
+  64   1      
+  65   1          EA = 1;
+  66   1      
+  67   1      
+  68   1          while(1) {
+  69   2              delay_ms(10);
+  70   2      
+  71   2              // 判断 UART1 是否收到数据了 5
+  72   2              if((COM1.RX_TimeOut > 0 )&& (--COM1.RX_TimeOut == 0)) {
+  73   3                  //超时计数
+  74   3                  if(COM1.RX_Cnt > 0) {
+  75   4                      on_uart1_recv();
+  76   4                  }
+  77   3                  COM1.RX_Cnt = 0;
+  78   3              }
+  79   2              
+  80   2              // 判断 UART2 是否收到数据了
+  81   2              if(COM2.RX_TimeOut > 0) {
+  82   3                  //超时计数
+  83   3                  if(--COM2.RX_TimeOut == 0) {
+  84   4                      if(COM2.RX_Cnt > 0) {
+  85   5                          on_uart2_recv();
+  86   5                      }
+  87   4                      COM2.RX_Cnt = 0;
+  88   4                  }
+  89   3              }
+  90   2              
+  91   2          }
+  92   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    235    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      16
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
