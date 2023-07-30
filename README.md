@@ -1,2 +1,3 @@
 # C51_and_ASRPRO_01
 STC8_51单片机和ASRPRO语言模块串口通讯
+语音模块用天问block编写程序，这里只是stc8的串口代码。
