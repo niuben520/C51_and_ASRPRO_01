@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    07/31/2023  01:12:40  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    07/31/2023  02:09:12  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
@@ -44,7 +44,8 @@ LINK MAP OF MODULE:  .\Objects\Project (MAIN)
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0020H     UNIT         ?PR?GPIO_CONFIG?MAIN
+            CODE    0003H     001FH     UNIT         ?PR?ON_UART1_RECV?MAIN
+                    0022H     0001H                  *** GAP ***
             CODE    0023H     0003H     ABSOLUTE     
             CODE    0026H     0013H     UNIT         ?PR?_PRINTSTRING1?UART
                     0039H     000AH                  *** GAP ***
@@ -54,18 +55,18 @@ LINK MAP OF MODULE:  .\Objects\Project (MAIN)
             CODE    05BDH     019EH     UNIT         ?C?LIB_CODE
             CODE    075BH     006FH     UNIT         ?PR?UART2_INT?UART
             CODE    07CAH     0069H     UNIT         ?PR?UART1_INT?UART
-            CODE    0833H     0050H     UNIT         ?PR?UART_CONFIG?MAIN
-            CODE    0883H     003DH     UNIT         ?PR?MAIN?MAIN
-            CODE    08C0H     0024H     UNIT         ?PR?_TX2_WRITE2BUFF?UART
-            CODE    08E4H     0023H     UNIT         ?PR?_TX1_WRITE2BUFF?UART
-            CODE    0907H     001FH     UNIT         ?PR?ON_UART1_RECV?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 2
+            CODE    0833H     0060H     UNIT         ?PR?MAIN?MAIN
+            CODE    0893H     0050H     UNIT         ?PR?UART_CONFIG?MAIN
+            CODE    08E3H     0030H     UNIT         ?PR?GPIO_CONFIG?MAIN
+            CODE    0913H     0024H     UNIT         ?PR?_TX2_WRITE2BUFF?UART
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 2
 
 
-            CODE    0926H     001FH     UNIT         ?PR?ON_UART2_RECV?MAIN
-            CODE    0945H     0013H     UNIT         ?PR?_PRINTSTRING2?UART
-            CODE    0958H     0010H     UNIT         ?PR?_DELAY_MS?DELAY
-            CODE    0968H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0937H     0023H     UNIT         ?PR?_TX1_WRITE2BUFF?UART
+            CODE    095AH     001FH     UNIT         ?PR?ON_UART2_RECV?MAIN
+            CODE    0979H     0013H     UNIT         ?PR?_PRINTSTRING2?UART
+            CODE    098CH     0010H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    099CH     000CH     UNIT         ?C_C51STARTUP
 
 
 
@@ -117,103 +118,115 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   B:00A8H.7       PUBLIC        EA
   D:00E8H         PUBLIC        P6
   D:00F8H         PUBLIC        P7
-  C:0003H         PUBLIC        GPIO_config
+  C:08E3H         PUBLIC        GPIO_config
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 3
+
+
   D:00A8H         PUBLIC        IE
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 3
-
-
-  C:0833H         PUBLIC        UART_config
+  C:0893H         PUBLIC        UART_config
   D:00B8H         PUBLIC        IP
   D:00D8H         PUBLIC        CCON
-  C:0883H         PUBLIC        main
+  C:0833H         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0907H         PUBLIC        on_uart1_recv
+  B:00C8H.3       PUBLIC        P53
+  C:0003H         PUBLIC        on_uart1_recv
   D:00F0H         PUBLIC        B
-  C:0926H         PUBLIC        on_uart2_recv
+  C:095AH         PUBLIC        on_uart2_recv
   D:00E0H         PUBLIC        ACC
   D:00D0H         PUBLIC        PSW
   -------         PROC          GPIO_CONFIG
   -------         DO            
   D:0008H         SYMBOL        GPIO_InitStructure
   -------         ENDDO         
-  C:0003H         LINE#         6
-  C:0003H         LINE#         8
-  C:0006H         LINE#         9
-  C:0009H         LINE#         10
-  C:0013H         LINE#         12
-  C:0016H         LINE#         13
-  C:0019H         LINE#         14
+  C:08E3H         LINE#         6
+  C:08E3H         LINE#         8
+  C:08E6H         LINE#         9
+  C:08E9H         LINE#         10
+  C:08F3H         LINE#         12
+  C:08F6H         LINE#         13
+  C:08F9H         LINE#         14
+  C:0903H         LINE#         16
+  C:0906H         LINE#         17
+  C:0909H         LINE#         18
   -------         ENDPROC       GPIO_CONFIG
   -------         PROC          UART_CONFIG
   -------         DO            
   D:0008H         SYMBOL        COMx_InitStructure
   -------         ENDDO         
-  C:0833H         LINE#         17
-  C:0833H         LINE#         20
-  C:0836H         LINE#         21
-  C:0839H         LINE#         22
-  C:0845H         LINE#         23
-  C:0848H         LINE#         24
-  C:084BH         LINE#         25
-  C:084EH         LINE#         26
-  C:0850H         LINE#         27
-  C:0852H         LINE#         28
-  C:085CH         LINE#         30
-  C:085FH         LINE#         31
-  C:0862H         LINE#         32
-  C:086DH         LINE#         33
-  C:0870H         LINE#         34
-  C:0872H         LINE#         35
-  C:0875H         LINE#         36
-  C:0877H         LINE#         37
-  C:0879H         LINE#         38
+  C:0893H         LINE#         21
+  C:0893H         LINE#         24
+  C:0896H         LINE#         25
+  C:0899H         LINE#         26
+  C:08A5H         LINE#         27
+  C:08A8H         LINE#         28
+  C:08ABH         LINE#         29
+  C:08AEH         LINE#         30
+  C:08B0H         LINE#         31
+  C:08B2H         LINE#         32
+  C:08BCH         LINE#         34
+  C:08BFH         LINE#         35
+  C:08C2H         LINE#         36
+  C:08CDH         LINE#         37
+  C:08D0H         LINE#         38
+  C:08D2H         LINE#         39
+  C:08D5H         LINE#         40
+  C:08D7H         LINE#         41
+  C:08D9H         LINE#         42
   -------         ENDPROC       UART_CONFIG
   -------         PROC          ON_UART1_RECV
   -------         DO            
   D:0008H         SYMBOL        i
   -------         ENDDO         
-  C:0907H         LINE#         41
-  C:0907H         LINE#         44
-  C:0911H         LINE#         46
-  C:0921H         LINE#         49
-  C:0925H         LINE#         50
+  C:0003H         LINE#         45
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 4
+
+
+  C:0003H         LINE#         48
+  C:000DH         LINE#         50
+  C:001DH         LINE#         53
+  C:0021H         LINE#         54
   -------         ENDPROC       ON_UART1_RECV
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 4
-
-
   -------         PROC          ON_UART2_RECV
   -------         DO            
   D:0008H         SYMBOL        i
   -------         ENDDO         
-  C:0926H         LINE#         51
-  C:0926H         LINE#         54
-  C:0930H         LINE#         55
-  C:0940H         LINE#         56
-  C:0944H         LINE#         57
+  C:095AH         LINE#         55
+  C:095AH         LINE#         58
+  C:0964H         LINE#         59
+  C:0974H         LINE#         61
+  C:0978H         LINE#         62
   -------         ENDPROC       ON_UART2_RECV
   -------         PROC          MAIN
-  C:0883H         LINE#         59
-  C:0883H         LINE#         61
-  C:0886H         LINE#         63
-  C:0889H         LINE#         65
-  C:088BH         LINE#         68
-  C:088BH         LINE#         69
-  C:0890H         LINE#         72
-  C:089AH         LINE#         74
-  C:08A1H         LINE#         75
-  C:08A4H         LINE#         76
-  C:08A4H         LINE#         77
-  C:08A7H         LINE#         78
-  C:08A7H         LINE#         81
-  C:08AEH         LINE#         83
-  C:08B1H         LINE#         84
-  C:08B8H         LINE#         85
-  C:08BBH         LINE#         86
-  C:08BBH         LINE#         87
-  C:08BEH         LINE#         88
-  C:08BEH         LINE#         89
-  C:08BEH         LINE#         91
+  -------         DO            
+  D:0006H         SYMBOL        j
+  -------         ENDDO         
+  C:0833H         LINE#         64
+  C:0833H         LINE#         66
+  C:0836H         LINE#         68
+  C:0839H         LINE#         70
+  C:083BH         LINE#         73
+  C:083BH         LINE#         74
+  C:0840H         LINE#         77
+  C:084AH         LINE#         79
+  C:0851H         LINE#         80
+  C:0854H         LINE#         81
+  C:0854H         LINE#         82
+  C:0857H         LINE#         83
+  C:0857H         LINE#         86
+  C:085EH         LINE#         88
+  C:0861H         LINE#         89
+  C:0868H         LINE#         90
+  C:086BH         LINE#         91
+  C:087CH         LINE#         92
+  C:087EH         LINE#         93
+  C:088CH         LINE#         94
+  C:088EH         LINE#         95
+  C:088EH         LINE#         96
+  C:088EH         LINE#         97
+  C:0891H         LINE#         98
+  C:0891H         LINE#         99
+  C:0891H         LINE#         101
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -226,6 +239,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   D:00C0H         PUBLIC        P4
   D:00C8H         PUBLIC        P5
   D:00E8H         PUBLIC        P6
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 5
+
+
   D:00F8H         PUBLIC        P7
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
@@ -234,23 +250,20 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   D:0088H         PUBLIC        TCON
   D:00F0H         PUBLIC        B
   D:00E0H         PUBLIC        ACC
-  C:0958H         PUBLIC        _delay_ms
+  C:098CH         PUBLIC        _delay_ms
   D:00D0H         PUBLIC        PSW
   -------         PROC          _DELAY_MS
   D:0007H         SYMBOL        ms
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 5
-
-
   D:0004H         SYMBOL        i
   -------         ENDDO         
-  C:0958H         LINE#         30
-  C:0958H         LINE#         31
-  C:0958H         LINE#         33
-  C:0958H         LINE#         34
-  C:095CH         LINE#         35
-  C:0965H         LINE#         36
-  C:0967H         LINE#         37
+  C:098CH         LINE#         30
+  C:098CH         LINE#         31
+  C:098CH         LINE#         33
+  C:098CH         LINE#         34
+  C:0990H         LINE#         35
+  C:0999H         LINE#         36
+  C:099BH         LINE#         37
   -------         ENDPROC       _DELAY_MS
   -------         ENDMOD        DELAY
 
@@ -286,6 +299,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   D:0088H         PUBLIC        TCON
   D:00F0H         PUBLIC        B
   D:00E0H         PUBLIC        ACC
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 6
+
+
   C:0369H         PUBLIC        _GPIO_Inilize
   D:00D0H         PUBLIC        PSW
   D:0094H         PUBLIC        P0M0
@@ -299,9 +315,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   C:037EH         LINE#         32
   C:0381H         LINE#         33
   C:0381H         LINE#         34
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 6
-
-
   C:038FH         LINE#         35
   C:03A0H         LINE#         36
   C:03B1H         LINE#         37
@@ -346,6 +359,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   C:052FH         LINE#         76
   C:0540H         LINE#         77
   C:054FH         LINE#         78
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 7
+
+
   C:055FH         LINE#         79
   C:0572H         LINE#         80
   C:0572H         LINE#         81
@@ -359,9 +375,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   C:05BCH         LINE#         89
   -------         ENDPROC       _GPIO_INILIZE
   -------         ENDMOD        GPIO
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 7
-
-
 
   -------         MODULE        UART
   C:0000H         SYMBOL        _ICE_DUMMY_
@@ -398,14 +411,17 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
   C:0026H         PUBLIC        _PrintString1
-  C:0945H         PUBLIC        _PrintString2
+  C:0979H         PUBLIC        _PrintString2
   D:00AFH         PUBLIC        IE2
   D:00F0H         PUBLIC        B
   D:008EH         PUBLIC        AUXR
-  C:08E4H         PUBLIC        _TX1_write2buff
-  C:08C0H         PUBLIC        _TX2_write2buff
+  C:0937H         PUBLIC        _TX1_write2buff
+  C:0913H         PUBLIC        _TX2_write2buff
   D:00E0H         PUBLIC        ACC
   B:00A8H.3       PUBLIC        ET1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 8
+
+
   D:00B5H         PUBLIC        IP2
   D:008DH         PUBLIC        TH1
   D:00D6H         PUBLIC        TH2
@@ -419,9 +435,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   D:008FH         PUBLIC        INT_CLKO
   D:00D0H         PUBLIC        PSW
   -------         PROC          _UART_CONFIGURATION
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 8
-
-
   D:0014H         SYMBOL        UARTx
   D:0015H         SYMBOL        COMx
   -------         DO            
@@ -466,6 +479,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   C:017AH         LINE#         77
   C:017CH         LINE#         78
   C:0181H         LINE#         79
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 9
+
+
   C:0181H         LINE#         80
   C:0184H         LINE#         81
   C:0187H         LINE#         82
@@ -479,9 +495,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   C:01AAH         LINE#         90
   C:01AAH         LINE#         91
   C:01B6H         LINE#         92
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 9
-
-
   C:01B6H         LINE#         93
   C:01C4H         LINE#         94
   C:01C7H         LINE#         95
@@ -526,6 +539,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   C:0323H         LINE#         137
   C:0326H         LINE#         138
   C:0328H         LINE#         139
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 10
+
+
   C:032BH         LINE#         140
   C:033FH         LINE#         141
   C:0342H         LINE#         142
@@ -538,19 +554,16 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   -------         ENDPROC       _UART_CONFIGURATION
   -------         PROC          _TX1_WRITE2BUFF
   D:0007H         SYMBOL        dat
-  C:08E4H         LINE#         259
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 10
-
-
-  C:08E4H         LINE#         260
-  C:08E4H         LINE#         261
-  C:08F1H         LINE#         262
-  C:08FDH         LINE#         264
-  C:0901H         LINE#         265
-  C:0901H         LINE#         266
-  C:0904H         LINE#         267
-  C:0906H         LINE#         268
-  C:0906H         LINE#         269
+  C:0937H         LINE#         259
+  C:0937H         LINE#         260
+  C:0937H         LINE#         261
+  C:0944H         LINE#         262
+  C:0950H         LINE#         264
+  C:0954H         LINE#         265
+  C:0954H         LINE#         266
+  C:0957H         LINE#         267
+  C:0959H         LINE#         268
+  C:0959H         LINE#         269
   -------         ENDPROC       _TX1_WRITE2BUFF
   -------         PROC          _PRINTSTRING1
   D:0001H         SYMBOL        puts
@@ -585,26 +598,26 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   -------         ENDPROC       UART1_INT
   -------         PROC          _TX2_WRITE2BUFF
   D:0007H         SYMBOL        dat
-  C:08C0H         LINE#         304
-  C:08C0H         LINE#         305
-  C:08C0H         LINE#         306
-  C:08CDH         LINE#         307
-  C:08D9H         LINE#         309
-  C:08DDH         LINE#         310
-  C:08DDH         LINE#         311
-  C:08E0H         LINE#         312
-  C:08E3H         LINE#         313
-  C:08E3H         LINE#         314
+  C:0913H         LINE#         304
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 11
+
+
+  C:0913H         LINE#         305
+  C:0913H         LINE#         306
+  C:0920H         LINE#         307
+  C:092CH         LINE#         309
+  C:0930H         LINE#         310
+  C:0930H         LINE#         311
+  C:0933H         LINE#         312
+  C:0936H         LINE#         313
+  C:0936H         LINE#         314
   -------         ENDPROC       _TX2_WRITE2BUFF
   -------         PROC          _PRINTSTRING2
   D:0001H         SYMBOL        puts
-  C:0945H         LINE#         316
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 11
-
-
-  C:0945H         LINE#         317
-  C:0945H         LINE#         318
-  C:0957H         LINE#         319
+  C:0979H         LINE#         316
+  C:0979H         LINE#         317
+  C:0979H         LINE#         318
+  C:098BH         LINE#         319
   -------         ENDPROC       _PRINTSTRING2
   -------         PROC          UART2_INT
   C:075BH         LINE#         321
@@ -646,6 +659,9 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
 
   -------         MODULE        ?C?ULCMP
   C:06D1H         PUBLIC        ?C?ULCMP
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  02:09:12  PAGE 12
+
+
   -------         ENDMOD        ?C?ULCMP
 
   -------         MODULE        ?C?ULSHR
@@ -659,9 +675,6 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
   -------         MODULE        ?C?LLDIDATA0
   C:0725H         PUBLIC        ?C?LLDIDATA0
   -------         ENDMOD        ?C?LLDIDATA0
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  07/31/2023  01:12:40  PAGE 12
-
-
 
   -------         MODULE        ?C?LLDXDATA0
   C:0732H         PUBLIC        ?C?LLDXDATA0
@@ -681,5 +694,5 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (MAIN)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_PRINTSTRING2?UART
 
-Program Size: data=44.0 xdata=512 code=2410
+Program Size: data=44.0 xdata=512 code=2461
 LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

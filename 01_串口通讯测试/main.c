@@ -57,11 +57,12 @@ void on_uart2_recv(){
 		u8 i;
     for(i=0; i<COM2.RX_Cnt; i++)	{
 				TX1_write2buff(RX2_Buffer[i]); 	// 将2收到的数据，从UART1发出去
+				
     }
 }
 
 void main() {
-
+		u8 j;
     GPIO_config();
 
     UART_config();
@@ -87,6 +88,11 @@ void main() {
             if(--COM2.RX_TimeOut == 0) {
                 if(COM2.RX_Cnt > 0) {
                     on_uart2_recv();
+									if (j = 1 == RX2_Buffer[0]){
+												P53 = 1;
+										}else if(j = 0 == RX2_Buffer[0]){
+												P53 = 0;
+										}
                 }
                 COM2.RX_Cnt = 0;
             }
