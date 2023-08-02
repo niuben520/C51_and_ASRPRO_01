@@ -2,6 +2,14 @@
 #include "GPIO.h"
 #include "UART.h"
 #include "delay.h"
+#include <stdio.h>
+
+#define MOS P20
+
+char putchar (char dat) {
+	TX1_write2buff(dat);
+	return dat;
+}
 
 void GPIO_config(void) {
     GPIO_InitTypeDef	GPIO_InitStructure;		//结构定义
@@ -13,9 +21,9 @@ void GPIO_config(void) {
     GPIO_InitStructure.Mode = GPIO_PullUp;	//指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_OUT_PP
     GPIO_Inilize(GPIO_P1, &GPIO_InitStructure);//初始化
 	
-		GPIO_InitStructure.Pin  = GPIO_Pin_3;		//指定要初始化的IO,
-    GPIO_InitStructure.Mode = GPIO_PullUp;	//指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_OUT_PP
-    GPIO_Inilize(GPIO_P5, &GPIO_InitStructure);//初始化
+		GPIO_InitStructure.Pin  = GPIO_Pin_0;		//指定要初始化的IO,
+    GPIO_InitStructure.Mode = GPIO_OUT_PP;	//指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_OUT_PP
+    GPIO_Inilize(GPIO_P2, &GPIO_InitStructure);//初始化
 }
 
 void UART_config(void) {
@@ -23,7 +31,7 @@ void UART_config(void) {
 	
     COMx_InitStructure.UART_Mode      = UART_8bit_BRTx;	//模式, UART_ShiftRight,UART_8bit_BRTx,UART_9bit,UART_9bit_BRTx
     COMx_InitStructure.UART_BRT_Use   = BRT_Timer1;			//选择波特率发生器, BRT_Timer1, BRT_Timer2 (注意: 串口2固定使用BRT_Timer2)
-    COMx_InitStructure.UART_BaudRate  = 115200ul;			//波特率, 一般 110 ~ 115200
+    COMx_InitStructure.UART_BaudRate  = 9600ul;			//波特率, 一般 110 ~ 115200
     COMx_InitStructure.UART_RxEnable  = ENABLE;				//接收允许,   ENABLE或DISABLE
     COMx_InitStructure.BaudRateDouble = DISABLE;			//波特率加倍, ENABLE或DISABLE
     COMx_InitStructure.UART_Interrupt = ENABLE;				//中断允许,   ENABLE或DISABLE
@@ -62,7 +70,7 @@ void on_uart2_recv(){
 }
 
 void main() {
-		u8 j;
+		
     GPIO_config();
 
     UART_config();
@@ -73,27 +81,32 @@ void main() {
     while(1) {
         delay_ms(10);
 
-				// 判断 UART1 是否收到数据了 5
-        if((COM1.RX_TimeOut > 0 )&& (--COM1.RX_TimeOut == 0)) {
-            //超时计数
-						if(COM1.RX_Cnt > 0) {
-								on_uart1_recv();
-						}
-						COM1.RX_Cnt = 0;
-        }
-				
+//				// 判断 UART1 是否收到数据了 5
+//        if((COM1.RX_TimeOut > 0 )&& (--COM1.RX_TimeOut == 0)) {
+//            //超时计数
+//						if(COM1.RX_Cnt > 0) {
+//								on_uart1_recv();
+//						}
+//						COM1.RX_Cnt = 0;
+//        }
+//				
 				// 判断 UART2 是否收到数据了
         if(COM2.RX_TimeOut > 0) {
             //超时计数
+					printf("hallo1");
             if(--COM2.RX_TimeOut == 0) {
-                if(COM2.RX_Cnt > 0) {
+							printf("hallo2");
+									if(COM2.RX_Cnt > 0) {
+										printf("hallo3");
                     on_uart2_recv();
-									if (j = 1 == RX2_Buffer[0]){
-												P53 = 1;
-										}else if(j = 0 == RX2_Buffer[0]){
-												P53 = 0;
-										}
-                }
+											
+											if (RX2_Buffer[0] == 1){
+													MOS = 1;
+											}
+											else if(RX2_Buffer[0] == 0){
+												MOS = 0;
+											}									
+									}
                 COM2.RX_Cnt = 0;
             }
         }

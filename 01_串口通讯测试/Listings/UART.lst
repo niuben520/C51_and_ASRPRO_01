@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 1   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE UART
@@ -62,7 +62,7 @@ line level    source
   52   2          for(i=0; i<COM_TX1_Lenth; i++)  TX1_Buffer[i] = 0;
   53   2          for(i=0; i<COM_RX1_Lenth; i++)  RX1_Buffer[i] = 0;
   54   2      
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 2   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 2   
 
   55   2          if(COMx->UART_Priority > Priority_3)  return 2; //错误
   56   2          UART1_Priority(COMx->UART_Priority);  //指定中断优先级(低到高) Priority_0,Priority_1,Priority_2,Priority_
@@ -126,7 +126,7 @@ line level    source
  113   2          COM2.TX_read    = 0;
  114   2          COM2.TX_write   = 0;
  115   2          COM2.B_TX_busy  = 0;
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 3   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 3   
 
  116   2          COM2.RX_Cnt     = 0;
  117   2          COM2.RX_TimeOut = 0;
@@ -190,7 +190,7 @@ line level    source
                       TH3 = (u8)(j>>8);
                       TL3 = (u8)j;
                       T4T3M &= 0xf0;
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 4   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 4   
 
                       T4T3M |= 0x0a;      //Timer3 set As Timer, 1T mode, Start timer3
                     }
@@ -254,7 +254,7 @@ line level    source
                       AUXR &= ~(1<<3);    //Timer2 set As Timer
                       AUXR |=  (1<<2);    //Timer2 set as 1T mode
                       TH2 = (u8)(j>>8);
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 5   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 5   
 
                       TL2 = (u8)j;
                       IE2  &= ~(1<<2);  //禁止中断
@@ -318,7 +318,7 @@ line level    source
  296   3          }
  297   2          else  COM1.B_TX_busy = 0;
  298   2        }
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 6   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 6   
 
  299   1      }
  300          #endif
@@ -382,7 +382,7 @@ line level    source
                 }
               }
               
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 7   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 7   
 
               void PrintString3(u8 *puts)
               {
@@ -446,7 +446,7 @@ line level    source
                     COM4.RX_TimeOut = TimeOutSet4;
                   }
                 }
-C51 COMPILER V9.60.7.0   UART                                                              07/31/2023 02:09:12 PAGE 8   
+C51 COMPILER V9.60.7.0   UART                                                              08/02/2023 23:43:57 PAGE 8   
 
               
                 if(TI4)
